@@ -1,4 +1,4 @@
-package com.code.mobilewsrestapi.model.response.hello;
+package com.code.mobilewsrestapi.ui.model.response.hello;
 
 public class UserDetails {
 

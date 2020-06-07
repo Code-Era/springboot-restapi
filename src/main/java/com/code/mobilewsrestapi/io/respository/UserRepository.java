@@ -9,6 +9,8 @@ import com.code.mobilewsrestapi.io.entity.UserEntity;
 public interface UserRepository extends JpaRepository<UserEntity, Long>{
 	
 	public UserEntity findByUserId(String userID);
+	public UserEntity findByUsername(String username);
+	public UserEntity findBySsn(String ssn);
 	public void deleteByUserId(String userID);
 
 

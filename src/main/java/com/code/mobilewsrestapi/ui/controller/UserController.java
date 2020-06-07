@@ -3,10 +3,15 @@ package com.code.mobilewsrestapi.ui.controller;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,10 +28,12 @@ import com.code.mobilewsrestapi.ui.model.request.UserRequestModel;
 import com.code.mobilewsrestapi.ui.model.response.user.UserResponse;
 
 @RestController
+@Validated
 public class UserController {
 
 	@Autowired
 	UserService userService;
+	
 
 	@GetMapping(path = "/users")
 	public List<UserResponse> getAllUser() {
@@ -43,7 +50,7 @@ public class UserController {
 	
 
 	@PostMapping(path = "/users")
-	public UserResponse createUser(@RequestBody UserRequestModel userRequestModel) {
+	public UserResponse createUser( @Valid @RequestBody UserRequestModel userRequestModel) {
 		ModelMapper mapper = new ModelMapper();
 		
 		UserDto userDto =  mapper.map(userRequestModel,UserDto.class );
@@ -54,7 +61,7 @@ public class UserController {
 	}
 	
 	@GetMapping(path = "/users/{userId}")//get single user
-	public UserResponse getUser(@PathVariable String userId) {
+	public UserResponse getUser(@PathVariable @Min(1) String userId) {
 		
 		ModelMapper mapper = new ModelMapper();
 		UserDto userDto = userService.getUser(userId);

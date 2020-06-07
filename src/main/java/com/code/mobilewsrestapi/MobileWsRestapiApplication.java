@@ -10,11 +10,9 @@ import com.code.mobilewsrestapi.shared.Utils;
 @SpringBootApplication
 public class MobileWsRestapiApplication {
 
-	
-
 	public static void main(String[] args) {
 		SpringApplication.run(MobileWsRestapiApplication.class, args);
 		
-		}
+	}
 
 }

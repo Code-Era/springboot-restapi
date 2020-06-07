@@ -3,17 +3,44 @@ package com.code.mobilewsrestapi.ui.model.request;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.validator.constraints.UniqueElements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.code.mobilewsrestapi.ui.model.response.error.ErrorMessages;
+;
+
+
+
 
 public class UserRequestModel implements Serializable {
 
+	@Autowired
+	ErrorMessages errorMessage;
 	
+	@NotBlank(message = "username field is required.")
 	private String firstName;
-
-
+	
+	@NotBlank(message = "username field is required.")
 	private String username;
+	
+	@NotBlank(message = "LastName field is required.")
 	private String lastName;
+	
+	@NotBlank(message = "email field is required.")
 	private String email;
+	
+	@NotBlank(message = "role field is required.")
 	private String role;
+	
+	@NotBlank(message = "ssn field is required.")
 	private String ssn;
 	
 	

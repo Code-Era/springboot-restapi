@@ -1,12 +1,14 @@
 package com.code.mobilewsrestapi.io.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -43,6 +45,11 @@ public class UserEntity implements Serializable {
 	@Column(nullable = false, length = 50, unique = true)
 	private String ssn;
 
+	
+	@OneToMany(mappedBy = "userEntity")
+	List<OrderEntity> orders;
+	
+	
 	public UserEntity() {
 		super();
 	}
@@ -117,6 +124,14 @@ public class UserEntity implements Serializable {
 	public String toString() {
 		return "UserEntity [id=" + id + ", userId=" + userId + ", username=" + username + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", email=" + email + ", role=" + role + ", ssn=" + ssn + "]";
+	}
+
+	public List<OrderEntity> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<OrderEntity> orders) {
+		this.orders = orders;
 	}
 
 }

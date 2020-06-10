@@ -7,6 +7,9 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 public class CustomErrorDetails {
@@ -16,7 +19,11 @@ public class CustomErrorDetails {
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private Date date = new Date();
 	private String message;
+	
+	
 	private String errorMessage;
+	
+	@JsonInclude
 	private Map<String, String> subErrors;
 	
 	public CustomErrorDetails(HttpStatus status) {
